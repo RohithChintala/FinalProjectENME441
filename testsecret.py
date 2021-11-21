@@ -72,7 +72,7 @@ def get_busy_times_from_google_calendar():
         if int(day[i]) == int(currentday)+1:
           if int(hour[i]) < wakeuptime:
             wakeuptime = int(hour[i])
-            print('wake up by',wakeuptime)
+            #print('wake up by',wakeuptime)
           if int(hour[i]) == wakeuptime:
             if int(minute[i]) < wakeminute:
               wakeminute = int(minute[i])
