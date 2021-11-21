@@ -44,7 +44,7 @@ def get_busy_times_from_google_calendar():
     # Get the start and end times from all of the events.
     busy_times = []
     meetings = []
-    i = 0
+    global i = 0
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
