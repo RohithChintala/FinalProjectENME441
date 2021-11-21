@@ -64,51 +64,12 @@ def check_if_busy(busy_times, time_to_check):
 
 
 def main():
-    # Get the current time.
-    timezone = pytz.timezone(LOCAL_TIMEZONE)
-    now = timezone.localize(datetime.now())
+  timezone = pytz.timezone(LOCAL_TIMEZONE)
+  now = timezone.localize(datetime.now())
 
-    # Don't read from cache if the minute is divisible by 5 (e.g. 6:00, 6:05)
-    # or if the local cache does not exist
-    # or if the local cache has not yet been modified today
-    do_not_read_cache = (
-        now.minute % 5 == 0
-        or not os.path.exists(LOCAL_CACHE_FILEPATH)
-        or timezone.localize(
-            datetime.fromtimestamp(os.path.getmtime(LOCAL_CACHE_FILEPATH))
-        ).date()
-        != now.date()
-    )
-
-    if do_not_read_cache:
-        # Get the busy times from Google Calendar.
-        busy_times = get_busy_times_from_google_calendar()
-
-    
-    else:
-        # Read the busy times and smart plug IP from cache.
-        cache = open(LOCAL_CACHE_FILEPATH, "rb")
-        cached_data = pickle.load(cache)
-        cache.close()
-        busy_times = cached_data["busy_times"]
-
-    # If we're outside of workday hours, do nothing except turn the plug off.
-    workday_start_time = datetime.strptime(WORKDAY_START, "%I:%M%p").time()
-    workday_end_time = datetime.strptime(WORKDAY_END, "%I:%M%p").time()
-
-    # If you can't find the smart plug on the local network, error and exit.
-
-    # Check if I'm busy right now and if so, turn the light on. Otherwise, turn it off
-
-
-    # Create the cache if it does not exist.
-    if not os.path.exists(LOCAL_CACHE_FILEPATH):
-        open(LOCAL_CACHE_FILEPATH, "w+").close()
-
-    # Write to the cache
-    cache = open(LOCAL_CACHE_FILEPATH, "wb")
-    pickle.dump(data_to_write, cache)
-    cache.close()
+  busy_times = get_busy_times_from_google_calendar()
+  busy_right_now = check_if_busy(busy_times, now)
+  print(busy_right_now)
 
 if __name__ == "__main__":
     main()
