@@ -54,3 +54,4 @@ def get_busy_times_from_google_calendar():
         busy_times.append((event_start, event_end))
 
     return busy_times
+get_busy_times_from_google_calendar()
