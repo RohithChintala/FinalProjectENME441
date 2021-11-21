@@ -51,6 +51,7 @@ def get_busy_times_from_google_calendar():
     currentday = now.strftime("%d")
     currenthour = now.strftime("%H")
     currentminute = now.strftime("%M")
+    wakeuptime = 23
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
@@ -67,7 +68,6 @@ def get_busy_times_from_google_calendar():
         hour[i] = event_start.strftime("%H")  
         minute[i] = event_start.strftime("%M")   
         print(day[i],hour[i],minute[i],currentday)
-        wakeuptime = 23
         if int(day[i]) == int(currentday)+1:
           if int(hour[i]) < wakeuptime:
             wakeuptime = int(hour[i])
