@@ -110,7 +110,7 @@ def main():
   print(morningh, morningm)
   sh = 8
   sm = 30
-  nighth = moningh - sh
+  nighth = morningh - sh
   if morningm < 0:
       morningh -= 1
       morningm = 60 - m
