@@ -100,7 +100,7 @@ def main():
   busy_right_now = check_if_busy(busy_times, now)
   hour = [wake[0]]
   minute = [wake[1]]
-  h = 2
+  h = 1
   m = 15
   morningh = int(wake[0])- h
   morningm = int(wake[1])- m
