@@ -111,9 +111,10 @@ def main():
   sh = 8
   sm = 30
   nighth = morningh - sh
-  if morningm < 0:
-      morningh -= 1
-      morningm = 60 - m
+  nightm = morningm - sm
+  if nightm < 0:
+      nighth -= 1
+      nightm = 60 - sm
   print(nighth, nightm)
 
 
