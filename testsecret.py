@@ -108,6 +108,14 @@ def main():
       morningh -= 1
       morningm = 60 - m
   print(morningh, morningm)
+  sh = 8
+  sm = 30
+  nighth = moningh - sh
+  if morningm < 0:
+      morningh -= 1
+      morningm = 60 - m
+  print(nighth, nightm)
+
 
 if __name__ == "__main__":
     main()
