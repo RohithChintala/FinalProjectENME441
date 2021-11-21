@@ -70,7 +70,7 @@ def main():
   busy_times = get_busy_times_from_google_calendar()
   busy_right_now = check_if_busy(busy_times, now)
   print(busy_right_now)
-  print(busy_times[start_time])
+  print(busy_times[0])
 
 if __name__ == "__main__":
     main()
