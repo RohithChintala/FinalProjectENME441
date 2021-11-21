@@ -69,7 +69,7 @@ def get_busy_times_from_google_calendar():
         day[i] = event_start.strftime("%d")
         hour[i] = event_start.strftime("%H")  
         minute[i] = event_start.strftime("%M")   
-        print(day[i],hour[i],minute[i],currentday)
+        #print(day[i],hour[i],minute[i],currentday)
         if int(day[i]) == int(currentday)+1:
           if int(hour[i]) < wakeuptime:
             wakeuptime = int(hour[i])
