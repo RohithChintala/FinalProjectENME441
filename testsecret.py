@@ -81,7 +81,7 @@ def get_busy_times_from_google_calendar():
             #print('wake up by',wakeuptime, wakeminute)
             wake = [wakeuptime, wakeminute]
         i += 1
-    return busy_times, wake
+    return busy_times, wake, currentday
 
 
 
@@ -95,31 +95,43 @@ def check_if_busy(busy_times, time_to_check):
 def main():
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
+  currenthour = now.strftime("%H")
+  currentminute = now.strftime("%M")
+  if int(currenthour) == 23:
+    if int(currentminute) == 0:
+      busy_times, wake, currentday = get_busy_times_from_google_calendar()
+      busy_right_now = check_if_busy(busy_times, now)
+      hour = [wake[0]]
+      minute = [wake[1]]
+      h = 1
+      m = 15
+      morningh = int(wake[0])- h
+      morningm = int(wake[1])- m
+      if morningm < 0:
+          morningh -= 1
+          morningm = 60 - m
+      if morningh < 0:
+        morningh = 24 + morningh
+      print(morningh, morningm)
+      sh = 8
+      sm = 30
+      nighth = morningh - sh
+      nightm = morningm - sm
+      if nightm < 0:
+          nighth -= 1
+          nightm = 60 - sm
+      if nighth < 0:
+        nighth = 24 + nighth
+      print(nighth, nightm)
 
-  busy_times, wake = get_busy_times_from_google_calendar()
-  busy_right_now = check_if_busy(busy_times, now)
-  hour = [wake[0]]
-  minute = [wake[1]]
-  h = 1
-  m = 15
-  morningh = int(wake[0])- h
-  morningm = int(wake[1])- m
-  if morningm < 0:
-      morningh -= 1
-      morningm = 60 - m
-  if morningh < 0:
-    morningh = 24 + morningh
-  print(morningh, morningm)
-  sh = 8
-  sm = 30
-  nighth = morningh - sh
-  nightm = morningm - sm
-  if nightm < 0:
-      nighth -= 1
-      nightm = 60 - sm
-  if nighth < 0:
-    nighth = 24 + nighth
-  print(nighth, nightm)
+      if int(currenthour) == int(nighth):
+        if int(currentminute) == int(nightm):
+          print('nightalarm')
+      if int(currenthour) == int(morningh):
+        if int(currentminute) == int(morningm):
+          print('dayalarm')
+
+
 
 
 if __name__ == "__main__":
