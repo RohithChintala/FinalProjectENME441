@@ -43,6 +43,7 @@ def get_busy_times_from_google_calendar():
 
     # Get the start and end times from all of the events.
     busy_times = []
+    meetings = []
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
@@ -52,8 +53,11 @@ def get_busy_times_from_google_calendar():
             continue
             
         busy_times.append((event_start, event_end))
-        print(event_start)
-        print(event_start.strftime("%H"),event_start.strftime("%M"))
+       # print(event_start)
+        #print(event_start.strftime("%H"),event_start.strftime("%M"))
+        meeting[event] = event_start.strftime("%H")  
+        print(meetin[event])
+  
     return busy_times
 
 
