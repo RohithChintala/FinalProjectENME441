@@ -53,6 +53,7 @@ def get_busy_times_from_google_calendar():
     currentday = now.strftime("%d")
     currenthour = now.strftime("%H")
     currentminute = now.strftime("%M")
+    wake = [0,0]
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
@@ -77,9 +78,10 @@ def get_busy_times_from_google_calendar():
             if int(minute[i]) < wakeminute:
               wakeminute = int(minute[i])
             wakeuptime = int(hour[i])
-            print('wake up by',wakeuptime, wakeminute)
+            #print('wake up by',wakeuptime, wakeminute)
+            wake = [wakeuptime, wakeminute]
         i += 1
-    return busy_times
+    return busy_times, wake
 
 
 
@@ -94,9 +96,9 @@ def main():
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
 
-  busy_times = get_busy_times_from_google_calendar()
+  busy_times, wake = get_busy_times_from_google_calendar()
   busy_right_now = check_if_busy(busy_times, now)
-  print(busy_right_now)
+  print(wake)
   
 if __name__ == "__main__":
     main()
