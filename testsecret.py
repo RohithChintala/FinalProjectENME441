@@ -105,16 +105,18 @@ def main():
   morningh = int(wake[0])- h
   morningm = int(wake[1])- m
   if morningm < 0:
-      abs(morningh -= 1)
+      morningh -= 1
       morningm = 60 - m
+      morningh = abs(morningh)
   print(morningh, morningm)
   sh = 8
   sm = 30
   nighth = morningh - sh
   nightm = morningm - sm
   if nightm < 0:
-      abs(nighth -= 1)
+      nighth -= 1
       nightm = 60 - sm
+      nighth = abs(nighth)
   print(nighth, nightm)
 
 
