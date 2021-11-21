@@ -98,7 +98,16 @@ def main():
 
   busy_times, wake = get_busy_times_from_google_calendar()
   busy_right_now = check_if_busy(busy_times, now)
-  print(wake)
-  
+  hour = [wake[0]]
+  minute = [wake[1]]
+  h = 2
+  m = 15
+  morningh = int(wake[0])- h
+  morningm = int(wake[1])- m
+  if morningm < 0:
+      morningh -= 1
+      morningm = 60 - m
+  print(morningh, morningm)
+
 if __name__ == "__main__":
     main()
