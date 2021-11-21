@@ -47,11 +47,12 @@ def get_busy_times_from_google_calendar():
     hour = [0] * len(parsed_response["items"])
     minute = [0] * len(parsed_response["items"])
     i = 0
+    wakeuptime = 23
+    wakeminute = 59
     now = timezone.localize(datetime.now()) 
     currentday = now.strftime("%d")
     currenthour = now.strftime("%H")
     currentminute = now.strftime("%M")
-    wakeuptime = 23
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
@@ -72,6 +73,11 @@ def get_busy_times_from_google_calendar():
           if int(hour[i]) < wakeuptime:
             wakeuptime = int(hour[i])
             print('wake up by',wakeuptime)
+          if int(hour[i]) == wakeuptime:
+            if int(minute[i]) < wakeminute:
+              wakeminute = int(minute[i])
+            wakeuptime = int(hour[i])
+            print('wake up by',wakeuptime, wakeminute)
         i += 1
     return busy_times
 
