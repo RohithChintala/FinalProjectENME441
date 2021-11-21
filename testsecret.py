@@ -52,7 +52,7 @@ def get_busy_times_from_google_calendar():
             continue
             
         busy_times.append((event_start, event_end))
-
+        print(event_start)
     return busy_times
 
 
@@ -69,7 +69,7 @@ def main():
 
   busy_times = get_busy_times_from_google_calendar()
   busy_right_now = check_if_busy(busy_times, now)
-  print(busy_times.dumps())
+  print()
 
 if __name__ == "__main__":
     main()
