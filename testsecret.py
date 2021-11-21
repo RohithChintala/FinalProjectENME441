@@ -102,7 +102,7 @@ def main():
   minute = [wake[1]]
   h = 1
   m = 15
-  abs(morningh = int(wake[0])- h)
+  morningh = abs(int(wake[0])- h)
   morningm = int(wake[1])- m
   if morningm < 0:
       morningh -= 1
