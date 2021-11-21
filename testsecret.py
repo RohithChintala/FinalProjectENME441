@@ -58,10 +58,12 @@ def get_busy_times_from_google_calendar():
         busy_times.append((event_start, event_end))
        # print(event_start)
         #print(event_start.strftime("%H"),event_start.strftime("%M"))
+
         day[i] = event_start.strftime("%d")
         hour[i] = event_start.strftime("%H")  
-        minute[i] = event_start.strftime("%M")    
-        print(day[i],hour[i],minute[i])
+        minute[i] = event_start.strftime("%M")  
+        now = timezone.localize(datetime.now())  
+        print(day[i],hour[i],minute[i],now)
         i += 1
   
     return busy_times
