@@ -97,12 +97,13 @@ def main():
   now = timezone.localize(datetime.now())
   currenthour = now.strftime("%H")
   currentminute = now.strftime("%M")
+  busy_times, wake, currentday = get_busy_times_from_google_calendar()
+  busy_right_now = check_if_busy(busy_times, now)
+
   if int(currenthour) == 23:
     if int(currentminute) == 0:
       busy_times, wake, currentday = get_busy_times_from_google_calendar()
       busy_right_now = check_if_busy(busy_times, now)
-      print(wake)
-      print(currentday)
       hour = [wake[0]]
       minute = [wake[1]]
       h = 1
