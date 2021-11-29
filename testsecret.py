@@ -63,8 +63,8 @@ def get_busy_times_from_google_calendar():
             continue
             
         busy_times.append((event_start, event_end))
-       # print(event_start)
-        #print(event_start.strftime("%H"),event_start.strftime("%M"))
+        print(event_start)
+        print(event_start.strftime("%H"),event_start.strftime("%M"))
 
         day[i] = event_start.strftime("%d")
         hour[i] = event_start.strftime("%H")  
