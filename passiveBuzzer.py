@@ -49,7 +49,7 @@ def setup():
 	GPIO.setup(Buzzer, GPIO.OUT)	# Set pins' mode is output
 	global Buzz						# Assign a global variable to replace GPIO.PWM
 	Buzz = GPIO.PWM(Buzzer, 440)	# 440 is initial frequency.
-	Buzz.start(90)					# Start Buzzer pin with 50% duty ration
+	Buzz.start(100)					# Start Buzzer pin with 50% duty ration
 
 def loop():
 	while True:
