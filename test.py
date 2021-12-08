@@ -32,28 +32,29 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
 
 LCD1602.init(0x27, 1)
-
-if int(currenthour) == int(nighth):
-  if int(currentminute) == int(nightm):
-    print(GPIO.input(buttonPin)) ###where alarm goes
-    LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
-    LCD1602.write(2, 1, 'Time To Sleep')
-    buzzsetup()
-    for i in range(1, len(song_1)):
-      buzzloop(GPIO.input(buttonPin),song_1[i])
-    #if GPIO.input(buttonPin) == 0:
-     # buzzdestroy()
-     # LCD1602.write(0, 1, 'Alarm Off')
-    currentminute = 4
-    LCD1602.write(2, 1, 'Done')
-    
-if int(currenthour) == int(morningh):
-  if int(currentminute) == int(morningm):
-    print('dayalarm')  ###where alarm goes
-    LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
-    LCD1602.write(2, 1, 'Wake Up')
-    buzzsetup()
-    buzzloop()
-    if GPIO.input(buttonPin) == 1:
-      buzzdestroy()
-      LCD1602.write(0, 1, 'Alarm Off')
+while true:
+  if int(currenthour) == int(nighth):
+    if int(currentminute) == int(nightm):
+      print(GPIO.input(buttonPin)) ###where alarm goes
+      LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
+      LCD1602.write(2, 1, 'Time To Sleep')
+      buzzsetup()
+      for i in range(1, len(song_1)):
+        buzzloop(GPIO.input(buttonPin),song_1[i])
+      #if GPIO.input(buttonPin) == 0:
+      # buzzdestroy()
+      # LCD1602.write(0, 1, 'Alarm Off')
+      currentminute = 4
+      LCD1602.clear()
+      LCD1602.write(2, 1, 'Done')
+      
+  if int(currenthour) == int(morningh):
+    if int(currentminute) == int(morningm):
+      print('dayalarm')  ###where alarm goes
+      LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
+      LCD1602.write(2, 1, 'Wake Up')
+      buzzsetup()
+      buzzloop()
+      if GPIO.input(buttonPin) == 1:
+        buzzdestroy()
+        LCD1602.write(0, 1, 'Alarm Off')
