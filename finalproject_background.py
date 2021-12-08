@@ -42,6 +42,7 @@ while True: #runs continuously
   currentmonth = now.strftime("%b")
   currenthour = now.strftime("%H")
   currentminute = now.strftime("%M")
+  currentsecond = now.strftime("%S")
   #####
   ####
   ####
@@ -49,6 +50,7 @@ while True: #runs continuously
  ######
  ######Rewrite all morningh and morningm to be m[0]and m[1]
  ######
+  clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   #busy_times, wake, currentday = get_busy_times_from_google_calendar()
@@ -71,7 +73,7 @@ while True: #runs continuously
           morningm = 60 - m
       if morningh < 0:
         morningh = 24 + morningh
-      print(morningh, morningm)
+      #print(morningh, morningm)
       #sh = 8
       #sm = 30
       nighth = morningh - int(n[0])
@@ -83,19 +85,22 @@ while True: #runs continuously
         nighth = 24 + nighth
       #print(nighth, nightm)
       if int(currenthour) == 16: 
-        if int(currentminute) == 5:
-          print('nightalarm') ###where alarm goes
-          write(5, 0, '%s:%s' % (currenthour,currentminute))
-          write(2, 1, 'Time To Sleep')
-          buzzsetup()
-          for i in range(1, len(song_1)):
-            buzzloop(GPIO.input(buttonPin),song_1[i])
-          clear()
-          write(2, 1, 'Done')
+        if int(currentminute) == 15:
+          if int(currentsecond) == 0:
+            print('nightalarm') ###where alarm goes
+            clear()
+            write(5, 0, '%s:%s' % (currenthour,currentminute))
+            write(2, 1, 'Time To Sleep')
+            buzzsetup()
+            for i in range(1, len(song_1)):
+              buzzloop(GPIO.input(buttonPin),song_1[i])
+            clear()
+            write(2, 1, 'Done')
  
       if int(currenthour) == morningh:
         if int(currentminute) == morningm:
           print('dayalarm')  ###where alarm goes
+          clear()
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Wake Up')
           buzzsetup()
