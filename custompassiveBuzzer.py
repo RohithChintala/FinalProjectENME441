@@ -44,6 +44,7 @@ beat_2 = [	1, 1, 2, 2, 1, 1, 2, 2, 			# Beats of song 2, 1 means 1/8 beats
 			1, 2, 2, 1, 1, 2, 2, 1,
 			1, 2, 2, 1, 1, 3 ]
 
+
 def buzzsetup():
 	GPIO.setmode(GPIO.BOARD)		# Numbers GPIOs by physical location
 	GPIO.setup(Buzzer, GPIO.OUT)	# Set pins' mode is output
@@ -51,23 +52,30 @@ def buzzsetup():
 	Buzz = GPIO.PWM(Buzzer, 440)	# 440 is initial frequency.
 	Buzz.start(50)					# Start Buzzer pin with 50% duty ration
 
+def buzzdestroy():
+	Buzz.stop()					# Stop the buzzer
+	GPIO.output(Buzzer, 1)		# Set Buzzer pin to High
+	GPIO.cleanup()				# Release resource
+
+
 def buzzloop(pin):
   print ('\n    Playing song 1...')
   for i in range(1, len(song_1)):		# Play song 1
     if pin == 0:
       Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
       time.sleep(beat_1[i] * 0.1)		# delay a note for beat * 0.5s
+    if pin == 1:
+      buzzdestroy()
 
 
 
-def buzzdestroy():
-	Buzz.stop()					# Stop the buzzer
-	GPIO.output(Buzzer, 1)		# Set Buzzer pin to High
-	GPIO.cleanup()				# Release resource
 
+'''
 if __name__ == '__main__':		# Program start from here
 	setup()
 	try:
 		loop()
 	except KeyboardInterrupt:  	# When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
 		destory()
+
+'''
