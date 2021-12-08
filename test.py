@@ -18,7 +18,7 @@ nightm = 1
 morningh = 2
 morningm = 2
 
-init(0x27, 1)
+LCD1602.init(0x27, 1)
 
 if int(currenthour) == int(nighth):
   if int(currentminute) == int(nightm):
