@@ -30,7 +30,7 @@ if int(currenthour) == int(nighth):
     LCD1602.write(2, 1, 'Time To Sleep')
     buzzsetup()
     buzzloop()
-    if GPIO.input(buttonPin) == 1:
+    if GPIO.input(buttonPin) == 0:
       buzzdestroy()
       LCD1602.write(0, 1, 'Alarm Off')
     currentminute = 4
