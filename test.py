@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 from calendardata import get_busy_times_from_google_calendar
-from LCD1602 import init, write
+import LCD1602
 from passiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 
 currenthour = 1
@@ -18,24 +18,26 @@ nightm = 1
 morningh = 2
 morningm = 2
 
+init(0x27, 1)
+
 if int(currenthour) == int(nighth):
   if int(currentminute) == int(nightm):
     print('nightalarm') ###where alarm goes
-    write(5, 0, '%s:%s' % (currenthour,currentminute))
-    write(2, 1, 'Time To Sleep')
+    LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
+    LCD1602.write(2, 1, 'Time To Sleep')
     buzzsetup()
     buzzloop()
     if GPIO.input(buttonPin) == 1:
       buzzdestroy()
-      write(0, 1, 'Alarm Off')
+      LCD1602.write(0, 1, 'Alarm Off')
     
 if int(currenthour) == int(morningh):
   if int(currentminute) == int(morningm):
     print('dayalarm')  ###where alarm goes
-    write(5, 0, '%s:%s' % (currenthour,currentminute))
-    write(2, 1, 'Wake Up')
+    LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
+    LCD1602.write(2, 1, 'Wake Up')
     buzzsetup()
     buzzloop()
     if GPIO.input(buttonPin) == 1:
       buzzdestroy()
-      write(0, 1, 'Alarm Off')
+      LCD1602.write(0, 1, 'Alarm Off')
