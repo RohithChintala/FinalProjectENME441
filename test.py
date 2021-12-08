@@ -14,12 +14,12 @@ GPIO.setmode(GPIO.BOARD)
 buttonPin = 29
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 currenthour = 1
-nighth = 1
-currentminute = 1
-nightm = 1
+nighth = 2
+currentminute = 3
+nightm = 4
 
-morningh = 2
-morningm = 2
+morningh = 5
+morningm = 6
 
 CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frequency of Low C notes
 
@@ -58,3 +58,14 @@ while True:
       if GPIO.input(buttonPin) == 1:
         buzzdestroy()
         LCD1602.write(0, 1, 'Alarm Off')
+  init(0x27, 1)
+  LOCAL_TIMEZONE = "America/New_York"
+  timezone = pytz.timezone(LOCAL_TIMEZONE)
+  now = timezone.localize(datetime.now())
+  currentdayname = now.strftime("%a")
+  currentday = now.strftime("%d")
+  currentmonth = now.strftime("%b")
+  currenthour = now.strftime("%H")
+  currentminute = now.strftime("%M")
+  write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
+  write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
