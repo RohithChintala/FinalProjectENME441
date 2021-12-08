@@ -9,6 +9,8 @@ import json
 from calendardata import get_busy_times_from_google_calendar
 import LCD1602
 from passiveBuzzer import buzzsetup, buzzloop, buzzdestroy
+GPIO.setmode(GPIO.BCM)
+
 buttonPin = 5
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 currenthour = 1
