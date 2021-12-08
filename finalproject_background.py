@@ -64,8 +64,8 @@ while True: #runs continuously
       minute = [wake[1]]
       #h = 1
       #m = 15 #make these based on HTML
-      morningh = int(wake[0])- m[0]
-      morningm = int(wake[1])- m[1]
+      morningh = int(wake[0])- int(m[0])
+      morningm = int(wake[1])- int(m[1])
       if morningm < 0:
           morningh -= 1
           morningm = 60 - m
@@ -74,8 +74,8 @@ while True: #runs continuously
       print(morningh, morningm)
       #sh = 8
       #sm = 30
-      nighth = morningh - n[0]
-      nightm = morningm - n[1]
+      nighth = morningh - int(n[0])
+      nightm = morningm - int(n[1])
       if nightm < 0:
           nighth -= 1
           nightm = 60 - sm
