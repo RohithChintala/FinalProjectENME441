@@ -8,11 +8,25 @@ import RPi.GPIO as GPIO
 import time
 import json
 from calendardata import get_busy_times_from_google_calendar
-from LCD1602 import init, write
-from passiveBuzzer import buzzsetup, buzzloop, buzzdestroy
+from LCD1602 import init, write, clear
+from custompassiveBuzzer import buzzsetup, buzzloop
 
+
+#Buzzer = 11
+
+CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frequency of Low C notes
+
+CM = [0, 262, 294, 330, 350, 393, 441, 495]		# Frequency of Middle C notes
+
+CH = [0, 525, 589, 661, 700, 786, 882, 990]		# Frequency of High C notes
+
+song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of song1
+			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
 init(0x27, 1)
-buttonPin = 5
+GPIO.setmode(GPIO.BOARD)
+buttonPin = 29
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 while True: #runs continuously
   with open('final.txt', 'r') as f: #opens json dump file
@@ -68,18 +82,14 @@ while True: #runs continuously
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Time To Sleep')
           buzzsetup()
-          buzzloop()
-          if GPIO.input(buttonPin) == 1:
-            buzzdestroy()
-            write(0, 1, 'Alarm Off')
-          
+          for i in range(1, len(song_1)):
+            buzzloop(GPIO.input(buttonPin),song_1[i])
+          clear()
+          write(2, 1, 'Done')
+ 
       if int(currenthour) == int(m[0]):
         if int(currentminute) == int(m[1]):
           print('dayalarm')  ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Wake Up')
-          buzzsetup()
-          buzzloop()
-          if GPIO.input(buttonPin) == 1:
-            buzzdestroy()
-            write(0, 1, 'Alarm Off')
+
