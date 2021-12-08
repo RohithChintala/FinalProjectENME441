@@ -65,7 +65,7 @@ def buzzloop():
 			time.sleep(beat_2[i] * 0.5)     # delay a note for beat * 0.5s
 
 
-def buzzdestory():
+def buzzdestroy():
 	Buzz.stop()					# Stop the buzzer
 	GPIO.output(Buzzer, 1)		# Set Buzzer pin to High
 	GPIO.cleanup()				# Release resource
