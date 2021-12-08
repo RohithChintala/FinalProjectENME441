@@ -52,12 +52,11 @@ def buzzsetup():
 	Buzz.start(50)					# Start Buzzer pin with 50% duty ration
 
 def buzzloop(pin):
-	while True:
-		print ('\n    Playing song 1...')
-		for i in range(1, len(song_1)):		# Play song 1
-      if pin == 0:
-        Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
-        time.sleep(beat_1[i] * 0.5)		# delay a note for beat * 0.5s
+  print ('\n    Playing song 1...')
+  for i in range(1, len(song_1)):		# Play song 1
+    if pin == 0:
+      Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
+      time.sleep(beat_1[i] * 0.5)		# delay a note for beat * 0.5s
 
 
 
