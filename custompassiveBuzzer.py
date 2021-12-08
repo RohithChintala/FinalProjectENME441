@@ -58,15 +58,14 @@ def buzzdestroy():
 	GPIO.cleanup()				# Release resource
 
 
-def buzzloop(pin):
+def buzzloop(pin,song):
   print ('\n    Playing song 1...')
-  for i in range(1, len(song_1)):		# Play song 1
-    if pin == 0:
-      Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
-      for i in range(5):
-        time.sleep(.05)
-        if pin == 1:
-          buzzdestroy()
+  if pin == 0:
+    Buzz.ChangeFrequency(song)	# Change the frequency along the song note
+    for i in range(5):
+      time.sleep(.05)
+  if pin == 1:
+    buzzdestroy()
 
       #time.sleep(beat_1[i] * 0.25)		# delay a note for beat * 0.5s
    # elif pin == 1:

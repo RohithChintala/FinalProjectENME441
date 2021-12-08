@@ -21,6 +21,11 @@ nightm = 1
 morningh = 2
 morningm = 2
 
+song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of song1
+			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
+
 LCD1602.init(0x27, 1)
 
 if int(currenthour) == int(nighth):
@@ -29,7 +34,8 @@ if int(currenthour) == int(nighth):
     LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
     LCD1602.write(2, 1, 'Time To Sleep')
     buzzsetup()
-    buzzloop(GPIO.input(buttonPin))
+    for i in range(1, len(song_1)):
+      buzzloop(GPIO.input(buttonPin),song_1[i])
     #if GPIO.input(buttonPin) == 0:
      # buzzdestroy()
      # LCD1602.write(0, 1, 'Alarm Off')
