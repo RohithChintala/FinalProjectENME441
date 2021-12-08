@@ -82,8 +82,8 @@ while True: #runs continuously
       if nighth < 0:
         nighth = 24 + nighth
       #print(nighth, nightm)
-      if int(currenthour) == 4: 
-        if int(currentminute) == 3:
+      if int(currenthour) == 16: 
+        if int(currentminute) == 5:
           print('nightalarm') ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Time To Sleep')
