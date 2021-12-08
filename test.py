@@ -8,7 +8,7 @@ import time
 import json
 from calendardata import get_busy_times_from_google_calendar
 import LCD1602
-from customepassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
+from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 GPIO.setmode(GPIO.BOARD)
 
 buttonPin = 29
