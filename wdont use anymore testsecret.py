@@ -129,10 +129,10 @@ def main():
 
       if int(currenthour) == int(nighth):
         if int(currentminute) == int(nightm):
-          print('nightalarm')
+          print('nightalarm') ###where alarm goes
       if int(currenthour) == int(morningh):
         if int(currentminute) == int(morningm):
-          print('dayalarm')
+          print('dayalarm')  ###where alarm goes
 
 
 

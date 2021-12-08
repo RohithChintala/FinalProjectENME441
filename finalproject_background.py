@@ -1,35 +1,79 @@
 #!/usr/bin/python37all
-
+import requests
+from datetime import datetime, timedelta
+import urllib.parse
+import json
+import pytz
 import RPi.GPIO as GPIO
 import time
 import json
+from calendardata import get_busy_times_from_google_calendar
+from LCD1602 import init, write
+from passiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 
-ledPin1 = 19
-ledPin2 = 17
-ledPin3 = 27
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(27, GPIO.OUT)
-
-pwm1 = GPIO.PWM(ledPin1, 100) # PWM object on our pin at 100 Hz
-pwm1.start(0) # start with LED 1 off
-pwm2 = GPIO.PWM(ledPin2, 100) # PWM object on our pin at 100 Hz
-pwm2.start(0) # start with LED 2 off
-pwm3 = GPIO.PWM(ledPin3, 100) # PWM object on our pin at 100 Hz
-pwm3.start(0) # start with LED 3 off
-
+init(0x27, 1)
+buttonPin = 5
+GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 while True: #runs continuously
   with open('final.txt', 'r') as f: #opens json dump file
     data = json.load(f) #sets data to be loaded from json dump file
-    dutyCycle = float(data['slider1'])  #sets duty cycle to be a float from data
-  if data['Le'] == '1': #runs if LED 1 is selected in radio button
-    pwm1.ChangeDutyCycle(dutyCycle) #changes duty cycle for LED 1
-    time.sleep(0.1) #sleeps for .1 seconds
-  if data['Le'] == '2':  #runs if LED 2 is selected in radio button
-    pwm2.ChangeDutyCycle(dutyCycle) #changes duty cycle for LED 2
-    time.sleep(0.1) #sleeps for .1 seconds
-  if data['Le'] == '3':  #runs if LED 3 is selected in radio button
-    pwm3.ChangeDutyCycle(dutyCycle) #changes duty cycle for LED 3
-    time.sleep(0.1) #sleeps for .1 seconds
+    m = [data['mhours'],data['mmins'],data['mtime']]
+    n = [data['nhours'],data['nmins'],data['ntime']]
+    r = [data['rhours'],data['rmins'],data['rtime']]
+  LOCAL_TIMEZONE = "America/New_York"
+  timezone = pytz.timezone(LOCAL_TIMEZONE)
+  now = timezone.localize(datetime.now())
+  currentdayname = now.strftime("%a")
+  currentday = now.strftime("%d")
+  currentmonth = now.strftime("%b")
+  currenthour = now.strftime("%H")
+  currentminute = now.strftime("%M")
+ ####DO RTIME BOOLEAN FOR am pm
+  write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
+  write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
+  if int(currenthour) == r[0]:
+    if int(currentminute) == r[2]:
+      busy_times, wake, currentday = get_busy_times_from_google_calendar() #delete busy times
+      hour = [wake[0]]
+      minute = [wake[1]]
+      h = 1
+      m = 15
+      morningh = int(wake[0])- h
+      morningm = int(wake[1])- m
+      if morningm < 0:
+          morningh -= 1
+          morningm = 60 - m
+      if morningh < 0:
+        morningh = 24 + morningh
+      print(morningh, morningm)
+      sh = 8
+      sm = 30
+      nighth = morningh - sh
+      nightm = morningm - sm
+      if nightm < 0:
+          nighth -= 1
+          nightm = 60 - sm
+      if nighth < 0:
+        nighth = 24 + nighth
+      #print(nighth, nightm)
+      if int(currenthour) == int(nighth):
+        if int(currentminute) == int(nightm):
+          print('nightalarm') ###where alarm goes
+          write(5, 0, '%s:%s' % (currenthour,currentminute))
+          write(2, 1, 'Time To Sleep')
+          buzzsetup()
+          buzzloop()
+          if GPIO.input(buttonPin) == 1:
+            buzzdestroy()
+            write(0, 1, 'Alarm Off')
+          
+      if int(currenthour) == int(morningh):
+        if int(currentminute) == int(morningm):
+          print('dayalarm')  ###where alarm goes
+          write(5, 0, '%s:%s' % (currenthour,currentminute))
+          write(2, 1, 'Wake Up')
+          buzzsetup()
+          buzzloop()
+          if GPIO.input(buttonPin) == 1:
+            buzzdestroy()
+            write(0, 1, 'Alarm Off')

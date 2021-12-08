@@ -44,14 +44,14 @@ beat_2 = [	1, 1, 2, 2, 1, 1, 2, 2, 			# Beats of song 2, 1 means 1/8 beats
 			1, 2, 2, 1, 1, 2, 2, 1,
 			1, 2, 2, 1, 1, 3 ]
 
-def setup():
+def buzzsetup():
 	GPIO.setmode(GPIO.BOARD)		# Numbers GPIOs by physical location
 	GPIO.setup(Buzzer, GPIO.OUT)	# Set pins' mode is output
 	global Buzz						# Assign a global variable to replace GPIO.PWM
 	Buzz = GPIO.PWM(Buzzer, 440)	# 440 is initial frequency.
 	Buzz.start(50)					# Start Buzzer pin with 50% duty ration
 
-def loop():
+def buzzloop():
 	while True:
 		print ('\n    Playing song 1...')
 		for i in range(1, len(song_1)):		# Play song 1
@@ -65,7 +65,7 @@ def loop():
 			time.sleep(beat_2[i] * 0.5)     # delay a note for beat * 0.5s
 
 
-def destory():
+def buzzdestory():
 	Buzz.stop()					# Stop the buzzer
 	GPIO.output(Buzzer, 1)		# Set Buzzer pin to High
 	GPIO.cleanup()				# Release resource
