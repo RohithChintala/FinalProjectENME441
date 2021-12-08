@@ -55,7 +55,7 @@ def buzzsetup():
 def buzzdestroy():
 	Buzz.stop()					# Stop the buzzer
 	GPIO.output(Buzzer, 1)		# Set Buzzer pin to High
-	GPIO.cleanup()				# Release resource
+	#GPIO.cleanup()				# Release resource
 
 
 def buzzloop(pin,song):
