@@ -47,17 +47,19 @@ while True: #runs continuously
   ####
  ####DO RTIME BOOLEAN FOR am pm
  ######
+ ######Rewrite all morningh and morningm to be m[0]and m[1]
  ######
- ######3
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
+  busy_times, wake, currentday = get_busy_times_from_google_calendar()
+  print(busy_times, wake)
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:
       busy_times, wake, currentday = get_busy_times_from_google_calendar() #delete busy times
       hour = [wake[0]]
       minute = [wake[1]]
       h = 1
-      m = 15
+      m = 15 #make these based on HTML
       morningh = int(wake[0])- h
       morningm = int(wake[1])- m
       if morningm < 0:
