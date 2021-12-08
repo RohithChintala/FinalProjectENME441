@@ -56,7 +56,7 @@ def buzzloop(pin):
   for i in range(1, len(song_1)):		# Play song 1
     if pin == 0:
       Buzz.ChangeFrequency(song_1[i])	# Change the frequency along the song note
-      time.sleep(beat_1[i] * 0.5)		# delay a note for beat * 0.5s
+      time.sleep(beat_1[i] * 0.1)		# delay a note for beat * 0.5s
 
 
 
