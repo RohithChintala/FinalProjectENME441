@@ -51,37 +51,39 @@ while True: #runs continuously
  ######
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
-  busy_times, wake, currentday = get_busy_times_from_google_calendar()
-  print(wake)
-  print('stop')
-  time.sleep(20)
-  if int(currenthour) == r[0]:
-    if int(currentminute) == r[2]:
+  #busy_times, wake, currentday = get_busy_times_from_google_calendar()
+  #print(wake)
+  #print('stop')
+  #time.sleep(20)
+  #if int(currenthour) == r[0]:
+   # if int(currentminute) == r[2]:
+  if int(currenthour) == int(currenthour): 
+    if int(currentminute) == int(currentminute):
       busy_times, wake, currentday = get_busy_times_from_google_calendar() #delete busy times
       hour = [wake[0]]
       minute = [wake[1]]
-      h = 1
-      m = 15 #make these based on HTML
-      morningh = int(wake[0])- h
-      morningm = int(wake[1])- m
+      #h = 1
+      #m = 15 #make these based on HTML
+      morningh = int(wake[0])- m[0]
+      morningm = int(wake[1])- m[1]
       if morningm < 0:
           morningh -= 1
           morningm = 60 - m
       if morningh < 0:
         morningh = 24 + morningh
       print(morningh, morningm)
-      sh = 8
-      sm = 30
-      nighth = morningh - sh
-      nightm = morningm - sm
+      #sh = 8
+      #sm = 30
+      nighth = morningh - n[0]
+      nightm = morningm - n[1]
       if nightm < 0:
           nighth -= 1
           nightm = 60 - sm
       if nighth < 0:
         nighth = 24 + nighth
       #print(nighth, nightm)
-      if int(currenthour) == int(n[0]):
-        if int(currentminute) == int(n[1]):
+      if int(currenthour) == 4: 
+        if int(currentminute) == 3:
           print('nightalarm') ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Time To Sleep')
@@ -91,9 +93,14 @@ while True: #runs continuously
           clear()
           write(2, 1, 'Done')
  
-      if int(currenthour) == int(m[0]):
-        if int(currentminute) == int(m[1]):
+      if int(currenthour) == morningh:
+        if int(currentminute) == morningm:
           print('dayalarm')  ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Wake Up')
+          buzzsetup()
+          for i in range(1, len(song_1)):
+            buzzloop(GPIO.input(buttonPin),song_1[i])
+          clear()
+          write(2, 1, 'Done')
 
