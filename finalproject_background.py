@@ -28,7 +28,13 @@ while True: #runs continuously
   currentmonth = now.strftime("%b")
   currenthour = now.strftime("%H")
   currentminute = now.strftime("%M")
+  #####
+  ####
+  ####
  ####DO RTIME BOOLEAN FOR am pm
+ ######
+ ######
+ ######3
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   if int(currenthour) == r[0]:
@@ -56,8 +62,8 @@ while True: #runs continuously
       if nighth < 0:
         nighth = 24 + nighth
       #print(nighth, nightm)
-      if int(currenthour) == int(nighth):
-        if int(currentminute) == int(nightm):
+      if int(currenthour) == int(n[0]):
+        if int(currentminute) == int(n[1]):
           print('nightalarm') ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Time To Sleep')
@@ -67,8 +73,8 @@ while True: #runs continuously
             buzzdestroy()
             write(0, 1, 'Alarm Off')
           
-      if int(currenthour) == int(morningh):
-        if int(currentminute) == int(morningm):
+      if int(currenthour) == int(m[0]):
+        if int(currentminute) == int(m[1]):
           print('dayalarm')  ###where alarm goes
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Wake Up')

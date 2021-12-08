@@ -1,5 +1,4 @@
 #!/usr/bin/python37all
-
 import cgi
 import json
 data = cgi.FieldStorage()
@@ -18,6 +17,8 @@ web = {"sounds":sounds, "mhours":mhours, "nhours":nhours, "rhours":rhours, "mmin
 with open('final.txt', 'w') as f:
   json.dump(web,f) 
 
+print('Content-type:text/html\n\n')
+print('<html>')
 print('<div>')
 print('<div style="width: 600px; background: #40E0D0; border: 1px; text-align: center;"><br />')
 print('<h2>ENME441 Smart Alarm</h2>')
@@ -97,3 +98,4 @@ print('</form>')
 print('</div>')
 print('</div>')
 print('</div>')
+print('</html>')
