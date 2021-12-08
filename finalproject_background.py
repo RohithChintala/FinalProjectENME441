@@ -53,6 +53,8 @@ while True: #runs continuously
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   busy_times, wake, currentday = get_busy_times_from_google_calendar()
   print(wake)
+  print('stop')
+  time.sleep(20)
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:
       busy_times, wake, currentday = get_busy_times_from_google_calendar() #delete busy times
