@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 from calendardata import get_busy_times_from_google_calendar
-import LCD1602
+from LCD1602 import init, write, clear
 from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 GPIO.setmode(GPIO.BOARD)
 
@@ -31,13 +31,13 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5],CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	,CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]		]
 
-LCD1602.init(0x27, 1)
+init(0x27, 1)
 while True:
   if int(currenthour) == int(nighth):
     if int(currentminute) == int(nightm):
       print(GPIO.input(buttonPin)) ###where alarm goes
-      LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
-      LCD1602.write(2, 1, 'Time To Sleep')
+      write(5, 0, '%s:%s' % (currenthour,currentminute))
+      write(2, 1, 'Time To Sleep')
       buzzsetup()
       for i in range(1, len(song_1)):
         buzzloop(GPIO.input(buttonPin),song_1[i])
@@ -45,8 +45,8 @@ while True:
       # buzzdestroy()
       # LCD1602.write(0, 1, 'Alarm Off')
       currentminute = 4
-      LCD1602.clear()
-      LCD1602.write(2, 1, 'Done')
+      clear()
+      write(2, 1, 'Done')
       
   if int(currenthour) == int(morningh):
     if int(currentminute) == int(morningm):
@@ -57,8 +57,7 @@ while True:
       buzzloop()
       if GPIO.input(buttonPin) == 1:
         buzzdestroy()
-        LCD1602.write(0, 1, 'Alarm Off')
-  init(0x27, 1)
+        write(0, 1, 'Alarm Off')
   LOCAL_TIMEZONE = "America/New_York"
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
