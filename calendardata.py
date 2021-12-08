@@ -59,23 +59,23 @@ def get_busy_times_from_google_calendar():
         event_end = datetime.fromisoformat(event["end"]["dateTime"])
             
         busy_times.append((event_start, event_end))
-        print(event_start)
-        print(event_start.strftime("%H"),event_start.strftime("%M"))
+        #print(event_start)
+        #print(event_start.strftime("%H"),event_start.strftime("%M"))
 
         day[i] = event_start.strftime("%d")
         hour[i] = event_start.strftime("%H")  
         minute[i] = event_start.strftime("%M")   
-        print(day[i],hour[i],minute[i],currentday)
+        #print(day[i],hour[i],minute[i],currentday)
         #need to look into different months
         if int(day[i]) == int(currentday)+1:
           if int(hour[i]) < wakeuptime:
             wakeuptime = int(hour[i])
-            print('wake up by',wakeuptime)
+            #print('wake up by',wakeuptime)
           if int(hour[i]) == wakeuptime:
             if int(minute[i]) < wakeminute:
               wakeminute = int(minute[i])
             wakeuptime = int(hour[i])
-            print('wake up by',wakeuptime, wakeminute)
+            #print('wake up by',wakeuptime, wakeminute)
             wake = [wakeuptime, wakeminute]
         i += 1
     return busy_times, wake, currentday
