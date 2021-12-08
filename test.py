@@ -32,7 +32,7 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
 
 LCD1602.init(0x27, 1)
-while true:
+while True:
   if int(currenthour) == int(nighth):
     if int(currentminute) == int(nightm):
       print(GPIO.input(buttonPin)) ###where alarm goes
