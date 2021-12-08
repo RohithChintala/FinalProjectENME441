@@ -25,11 +25,11 @@ LCD1602.init(0x27, 1)
 
 if int(currenthour) == int(nighth):
   if int(currentminute) == int(nightm):
-    print('nightalarm') ###where alarm goes
+    print(GPIO.input(buttonPin)) ###where alarm goes
     LCD1602.write(5, 0, '%s:%s' % (currenthour,currentminute))
     LCD1602.write(2, 1, 'Time To Sleep')
-    buzzsetup()
-    buzzloop(GPIO.input(buttonPin))
+    #buzzsetup()
+    #buzzloop(GPIO.input(buttonPin))
     #if GPIO.input(buttonPin) == 0:
      # buzzdestroy()
      # LCD1602.write(0, 1, 'Alarm Off')
