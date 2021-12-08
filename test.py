@@ -29,6 +29,14 @@ CH = [0, 525, 589, 661, 700, 786, 882, 990]		# Frequency of High C notes
 song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of song1
 			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
 			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6],
+			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
+			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6],
+			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
 
 LCD1602.init(0x27, 1)
