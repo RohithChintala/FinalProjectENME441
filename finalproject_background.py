@@ -96,7 +96,7 @@ while True: #runs continuously
       if nighth < 0:
         nighth = 24 + nighth
       if int(currenthour) == 14: #correct to be nighh
-        if int(currentminute) == 40:
+        if int(currentminute) == 43:
           if int(currentsecond) == 0:
             print('nightalarm') ###where alarm goes
             clear()
@@ -106,11 +106,11 @@ while True: #runs continuously
               buzzsetup()
               for i in range(1, len(song_1)):
                 buzzloop(GPIO.input(buttonPin),song_1[i])
-              if s > 0:
-                for g in range(5):
-                  time.sleep(1)
+              if s < snooze:
                 clear()
                 write(2, 1, 'Alarm Snooze')
+                for g in range(5):
+                  time.sleep(1)
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == morningh:
