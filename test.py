@@ -36,7 +36,7 @@ while True:
   for i in range(1, len(song_1)):
     buzzloop(GPIO.input(buttonPin),song_1[i])
     if GPIO.input(buttonPin) == 1:
-      time.slee(5)
+      time.sleep(5)
   clear()
   write(2, 1, 'Alarm Off')
   '''
