@@ -67,6 +67,7 @@ while True: #runs continuously
   #print('stop')
   #time.sleep(20)
   if data['test'] == 'testing':
+    buzzsetup()
     for i in range(1, len(song_1)):
       buzzloop(GPIO.input(buttonPin),song_1[i])
   if int(currenthour) == r[0]:
