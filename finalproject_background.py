@@ -110,7 +110,7 @@ while True: #runs continuously
                 for g in range(5):
                 time.sleep(1)
                 clear()
-                write(2, 1, 'Snooze')
+                write(2, 1, 'Alarm Snooze')
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == morningh:
