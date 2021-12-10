@@ -33,6 +33,7 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 
 init(0x27, 1)
 while True:
+  buzzsetup()
   for i in range(1, len(song_1)):
     buzzloop(GPIO.input(buttonPin),song_1[i])
     if GPIO.input(buttonPin) == 1:
