@@ -61,7 +61,6 @@ while True: #runs continuously
  ##add different songs
  ##comment out code
  ##add snooze make to json
-  snooze = data['snooze']
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
@@ -106,9 +105,10 @@ while True: #runs continuously
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == 16:
-        if int(currentminute) == 2:
+        if int(currentminute) == 6:
           if int(currentsecond) == 0:
             print('dayalarm')  ###where alarm goes
+            snooze = data['snooze']
             for s in range(snooze+1):
               clear()
               write(5, 0, '%s:%s' % (currenthour,currentminute))
@@ -120,6 +120,6 @@ while True: #runs continuously
                 clear()
                 write(2, 1, 'Alarm Snooze')
                 for g in range(5):
-                  time.sleep(1)
+                  time.sleep(1)###########ADDD TIME REFRESH
             clear()
             write(2, 1, 'Alarm Off')
