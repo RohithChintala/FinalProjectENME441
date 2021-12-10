@@ -9,7 +9,7 @@ import time
 import json
 from calendardata import getcalendardata
 from LCD1602 import init, write, clear
-from custompassiveBuzzer import buzzsetup, buzzloop
+from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 
 
 #Buzzer = 11
@@ -24,6 +24,10 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
 			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
+
+song_test = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6],
+			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
+			CM[5], CM[2]]
 
 
 init(0x27, 1)
@@ -69,7 +73,8 @@ while True: #runs continuously
   if data['test'] == 'testing':
     buzzsetup()
     for i in range(1, len(song_1)):
-      buzzloop(GPIO.input(buttonPin),song_1[i])
+      buzzloop(GPIO.input(buttonPin),song_test[i])
+    buzzdestroy()
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:
   #if int(currenthour) == int(currenthour): 
