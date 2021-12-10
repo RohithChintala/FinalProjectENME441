@@ -44,6 +44,7 @@ def getcalendardata():
     parsed_response = json.loads(response.text)
 
     # Get the start and end times from all of the events.
+    month = [0] * len(parsed_response["items"])
     day = [0] * len(parsed_response["items"])
     hour = [0] * len(parsed_response["items"])
     minute = [0] * len(parsed_response["items"])
