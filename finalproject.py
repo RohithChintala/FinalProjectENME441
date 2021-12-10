@@ -40,7 +40,7 @@ print('<select name="snooze">')
 print('<option value="0">0</option>')
 print('<option value="1">1</option>')
 print('<option value="2">2</option>')
-print('<option value="3">3</option>')'
+print('<option value="3">3</option>')
 print('</select>')
 print('<br /><br />How Early to Wake Up Before Event:<select name="mhours">')
 print('<option value="0">0</option>')
