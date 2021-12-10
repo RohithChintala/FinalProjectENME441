@@ -36,9 +36,9 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 while True: #runs continuously
   with open('final.txt', 'r') as f: #opens json dump file
     data = json.load(f) #sets data to be loaded from json dump file
-    m = [data['mhours'],data['mmin'],data['mtime']]
-    n = [data['nhours'],data['nmin'],data['ntime']]
-    r = [data['rhours'],data['rmin'],data['rtime']]
+    m = [data['mhours'],data['mmin']]
+    n = [data['nhours'],data['nmin']]
+    r = [data['rhours'],data['rmin']]
   LOCAL_TIMEZONE = "America/New_York"
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
