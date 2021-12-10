@@ -106,7 +106,7 @@ while True: #runs continuously
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == 16:
-        if int(currentminute) == 01:
+        if int(currentminute) == 2:
           if int(currentsecond) == 0:
             print('dayalarm')  ###where alarm goes
             for s in range(snooze+1):
