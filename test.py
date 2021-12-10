@@ -42,7 +42,6 @@ while True:
   buzzsetup()
   for i in range(1, len(song_1)):
     buzzloop(GPIO.input(buttonPin),song_1[i])
- 
   clear()
   write(2, 1, 'Alarm Off')
   '''
