@@ -76,10 +76,10 @@ while True: #runs continuously
     for i in range(1, len(song_test)):
       buzzloop(GPIO.input(buttonPin),song_test[i])
     buzzdestroy()
-  if int(currenthour) == r[0]:
-    if int(currentminute) == r[2]:
-  #if int(currenthour) == int(currenthour): 
-    #if int(currentminute) == int(currentminute):
+  #if int(currenthour) == r[0]:
+    #if int(currentminute) == r[2]:
+  if int(currenthour) == int(currenthour): 
+    if int(currentminute) == int(currentminute):
       wake, currentday = getcalendardata()
       morningh = int(wake[0])- int(m[0])
       morningm = int(wake[1])- int(m[1])
@@ -95,8 +95,8 @@ while True: #runs continuously
           nightm = 60 - n[1]
       if nighth < 0:
         nighth = 24 + nighth
-      if int(currenthour) == nighth: 
-        if int(currentminute) == nightm:
+      if int(currenthour) == 14: #correct to be nighh
+        if int(currentminute) == 40:
           if int(currentsecond) == 0:
             print('nightalarm') ###where alarm goes
             clear()
