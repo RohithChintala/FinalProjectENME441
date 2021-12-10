@@ -62,7 +62,7 @@ while True: #runs continuously
  ##add display of schedule for next day
  ##add different songs
  ##comment out code
- ##add snooze
+ ##add snooze make to json
   snooze = 1
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
