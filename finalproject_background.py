@@ -105,8 +105,8 @@ while True: #runs continuously
               buzzloop(GPIO.input(buttonPin),song_1[i])
             clear()
             write(2, 1, 'Alarm Off')
-      if int(currenthour) == 15:
-        if int(currentminute) == 52:
+      if int(currenthour) == 16:
+        if int(currentminute) == 01:
           if int(currentsecond) == 0:
             print('dayalarm')  ###where alarm goes
             for s in range(snooze+1):
