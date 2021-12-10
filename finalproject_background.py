@@ -37,6 +37,7 @@ while True: #runs continuously
     m = [data['mhours'],data['mmin'],data['mtime']]
     n = [data['nhours'],data['nmin'],data['ntime']]
     r = [data['rhours'],data['rmin'],data['rtime']]
+    test = data['test']
   LOCAL_TIMEZONE = "America/New_York"
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
@@ -66,6 +67,9 @@ while True: #runs continuously
   #print(wake)
   #print('stop')
   #time.sleep(20)
+  if test == 'test':
+    for i in range(1, len(song_1)):
+      buzzloop(GPIO.input(buttonPin),song_1[i])
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:
   #if int(currenthour) == int(currenthour): 
