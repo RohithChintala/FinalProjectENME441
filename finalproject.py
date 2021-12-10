@@ -8,14 +8,11 @@ nhours = data.getvalue('nhours')
 rhours = data.getvalue('rhours') 
 mmin = data.getvalue('mmin') 
 nmin = data.getvalue('nmin') 
-rmin = data.getvalue('rmin') 
-mtime = data.getvalue('mtime')
-ntime = data.getvalue('ntime') 
-rtime = data.getvalue('rtime') 
+rmin = data.getvalue('rmin')  
 test = data.getvalue('test')
 snooze = data.getvalue('snooze')
 ###import calendar data potentially to display dates
-web = {"sounds":sounds, "mhours":mhours, "nhours":nhours, "rhours":rhours, "mmin":mmin, "nmin":nmin, "rmin":rmin, "mtime":mtime, "ntime":ntime, "rtime":rtime, "test":test, "snooze":snooze}
+web = {"sounds":sounds, "mhours":mhours, "nhours":nhours, "rhours":rhours, "mmin":mmin, "nmin":nmin, "rmin":rmin, "test":test, "snooze":snooze}
 with open('final.txt', 'w') as f:
   json.dump(web,f) 
 
