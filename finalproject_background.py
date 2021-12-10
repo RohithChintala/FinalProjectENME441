@@ -63,7 +63,7 @@ while True: #runs continuously
  ##add different songs
  ##comment out code
  ##add snooze make to json
-  snooze = 1
+  snooze = data['snooze']
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
