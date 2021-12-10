@@ -108,7 +108,7 @@ while True: #runs continuously
                 buzzloop(GPIO.input(buttonPin),song_1[i])
               if s > 0:
                 for g in range(5):
-                time.sleep(1)
+                  time.sleep(1)
                 clear()
                 write(2, 1, 'Alarm Snooze')
             clear()
