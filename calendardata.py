@@ -64,7 +64,7 @@ def getcalendardata():
         hour[i] = event_start.strftime("%H")  
         minute[i] = event_start.strftime("%M")   
         if int(day[i]) == 1:
-          int(day[i])+=1 #keeps code running on the first of the month
+          day[i] +=1 #keeps code running on the first of the month
         if int(month[i]) == int(currentmonth):
           if int(day[i]) == int(currentday)+1:
             if int(hour[i]) < wakeuptime:
