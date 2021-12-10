@@ -37,7 +37,7 @@ while True: #runs continuously
     m = [data['mhours'],data['mmin'],data['mtime']]
     n = [data['nhours'],data['nmin'],data['ntime']]
     r = [data['rhours'],data['rmin'],data['rtime']]
-    test = data['test']
+    t = data['test']
   LOCAL_TIMEZONE = "America/New_York"
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
