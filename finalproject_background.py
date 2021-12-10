@@ -105,10 +105,10 @@ while True: #runs continuously
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == 16:
-        if int(currentminute) == 6:
+        if int(currentminute) == 8:
           if int(currentsecond) == 0:
             print('dayalarm')  ###where alarm goes
-            snooze = data['snooze']
+            snooze = int(data['snooze'])
             for s in range(snooze+1):
               clear()
               write(5, 0, '%s:%s' % (currenthour,currentminute))
