@@ -58,7 +58,7 @@ while True: #runs continuously
  ######Rewrite all morningh and morningm to be m[0]and m[1]
  ######
  ###Things to do
- ##add testing for volume
+ ##add testing for volume---------------------
  ##add display of schedule for next day
  ##add different songs
  ##comment out code
@@ -104,6 +104,9 @@ while True: #runs continuously
             buzzsetup()
             for i in range(1, len(song_1)):
               buzzloop(GPIO.input(buttonPin),song_1[i])
+              if GPIO.input(buttonPin) == 1:
+                time.sleep(5)
+                print('good')
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == morningh:
