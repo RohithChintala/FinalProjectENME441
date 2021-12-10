@@ -6,7 +6,7 @@ import pytz
 import RPi.GPIO as GPIO
 import time
 import json
-from calendardata import get_busy_times_from_google_calendar
+from calendardata import getcalendardata
 from LCD1602 import init, write, clear
 from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
 GPIO.setmode(GPIO.BOARD)
