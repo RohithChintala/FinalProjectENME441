@@ -33,6 +33,13 @@ song_1 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], # Notes of so
 
 init(0x27, 1)
 while True:
+  for i in range(1, len(song_1)):
+    buzzloop(GPIO.input(buttonPin),song_1[i])
+    if GPIO.input(buttonPin) == 1:
+      time.slee(5)
+  clear()
+  write(2, 1, 'Alarm Off')
+  '''
   if int(currenthour) == int(nighth):
     if int(currentminute) == int(nightm):
       print(GPIO.input(buttonPin)) ###where alarm goes
@@ -68,3 +75,5 @@ while True:
   currentminute = now.strftime("%M")
   write(5, 0, '%s:%s' % (currenthour,currentminute)) #potentially add am
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
+
+  '''
