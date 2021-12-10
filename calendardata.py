@@ -10,7 +10,7 @@ import pytz
 GCALENDAR_URL_TEMPLATE = "https://clients6.google.com/calendar/v3/calendars/ii4b21lg3kh8rqbporo8bkb6ms@group.calendar.google.com/events?calendarId=ii4b21lg3kh8rqbporo8bkb6ms%40group.calendar.google.com&singleEvents=true&timeZone=America%2FNew_York&maxAttendees=1&maxResults=250&sanitizeHtml=true&timeMin=2021-11-28T00%3A00%3A00-05%3A00&timeMax=2022-01-02T00%3A00%3A00-05%3A00&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
 LOCAL_TIMEZONE = "America/New_York"  # Replace this with your time zone.
 
-def get_busy_times_from_google_calendar():
+def getcalendardata():
     """Returns a list of tuples (start time, end time) that represent busy times."""
 
     # Headers for the HTTP GET request.
@@ -44,7 +44,6 @@ def get_busy_times_from_google_calendar():
     parsed_response = json.loads(response.text)
 
     # Get the start and end times from all of the events.
-    busy_times = []
     day = [0] * len(parsed_response["items"])
     hour = [0] * len(parsed_response["items"])
     minute = [0] * len(parsed_response["items"])
@@ -52,32 +51,28 @@ def get_busy_times_from_google_calendar():
     wakeuptime = 23 
     wakeminute = 59
     now = timezone.localize(datetime.now()) 
+    currentmonth = now.strftime("%m")
     currentday = now.strftime("%d")
     currenthour = now.strftime("%H")
     currentminute = now.strftime("%M")
     wake = [0,0]
     for event in parsed_response["items"]:
         event_start = datetime.fromisoformat(event["start"]["dateTime"])
-        event_end = datetime.fromisoformat(event["end"]["dateTime"])
-            
-        busy_times.append((event_start, event_end))
-        #print(event_start)
-        #print(event_start.strftime("%H"),event_start.strftime("%M"))
-
+        event_end = datetime.fromisoformat(event["end"]["dateTime"])  
+        month[i] = event_start.strftime("%m")
         day[i] = event_start.strftime("%d")
         hour[i] = event_start.strftime("%H")  
         minute[i] = event_start.strftime("%M")   
-        #print(day[i],hour[i],minute[i],currentday)
-        #need to look into different months
-        if int(day[i]) == int(currentday)+1:
-          if int(hour[i]) < wakeuptime:
-            wakeuptime = int(hour[i])
-            #print('wake up by',wakeuptime)
-          if int(hour[i]) == wakeuptime:
-            if int(minute[i]) < wakeminute:
-              wakeminute = int(minute[i])
-            wakeuptime = int(hour[i])
-            #print('wake up by',wakeuptime, wakeminute)
-            wake = [wakeuptime, wakeminute]
-        i += 1
-    return busy_times, wake, currentday
+        if int(day[i]) == 1:
+          int(day[i])+=1 #keeps code running on the first of the month
+        if int(month[i]) == int(currentmonth):
+          if int(day[i]) == int(currentday)+1:
+            if int(hour[i]) < wakeuptime:
+              wakeuptime = int(hour[i])
+            if int(hour[i]) == wakeuptime:
+              if int(minute[i]) < wakeminute:
+                wakeminute = int(minute[i])
+              wakeuptime = int(hour[i])
+              wake = [wakeuptime, wakeminute]
+          i += 1
+    return wake, currentday
