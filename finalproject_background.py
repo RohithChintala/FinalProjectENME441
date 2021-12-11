@@ -65,6 +65,7 @@ while True: #runs continuously
   timezone = pytz.timezone(LOCAL_TIMEZONE)
   now = timezone.localize(datetime.now())
   currentdayname = now.strftime("%a")
+  currentyear = now.strftime("%y")
   currentday = now.strftime("%d")
   currentmonth = now.strftime("%b")
   currenthour = now.strftime("%H")
@@ -82,7 +83,7 @@ while True: #runs continuously
     
   #clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute))
-  write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
+  write(0, 1, "%s, %s, %s,'%s" % (currentdayname,currentday,currentmonth, currentyear))
   if data['test'] == 'testing':
     buzzsetup()
     for i in range(1, len(song)):
@@ -141,7 +142,7 @@ while True: #runs continuously
           if s < snooze:
             clear()
             write(2, 1, 'Alarm Snooze')
-            for g in range(5):
+            for g in range(30):
               time.sleep(1)
               now = timezone.localize(datetime.now())
               currenthour = now.strftime("%H")
