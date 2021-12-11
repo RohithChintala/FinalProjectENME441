@@ -7,7 +7,8 @@ import time
 from calendardata import getcalendardata
 from LCD1602 import init, write, clear
 from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
-
+from custompassiveBuzzer import CL,CM,CH,song_1,song_2
+'''
 CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frequency of Low C notes
 
 CM = [0, 262, 294, 330, 350, 393, 441, 495]		# Frequency of Middle C notes
@@ -28,7 +29,7 @@ song3 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6],
 			CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3],
 			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
-
+'''
 song_test = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3], CM[5], CM[2]]
 
   #####
@@ -67,18 +68,18 @@ while True: #runs continuously
   currentminute = now.strftime("%M")
   currentsecond = now.strftime("%S")
   if sound == 'song1':
-    song = song1
+    song = song_1
   elif sound == 'song2':
-    song = song2
-  elif sound == 'song3':
-    song = song3
+    song = song_2
+  #elif sound == 'song3':
+  #  song = song_3
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute))
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   if data['test'] == 'testing':
     buzzsetup()
-    for i in range(1, len(song_test)):
-      buzzloop(GPIO.input(buttonPin),song_test[i])
+    for i in range(1, len(song)):
+      buzzloop(GPIO.input(buttonPin),song[i])
     buzzdestroy()
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:
