@@ -49,6 +49,10 @@ init(0x27, 1)
 GPIO.setmode(GPIO.BOARD)
 buttonPin = 29
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+morningh = 0
+morningm = 0
+nighth = 0
+nightm = 0
 
 while True: #runs continuously
   with open('final.txt', 'r') as f: #opens json dump file
