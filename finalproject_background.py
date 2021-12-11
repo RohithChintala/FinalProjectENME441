@@ -85,55 +85,60 @@ while True: #runs continuously
     buzzdestroy()
   if int(currenthour) == int(r[0]):
     if int(currentminute) == int(r[1]):
-      print('refresh')
-  #if int(currenthour) == int(currenthour): 
-    #if int(currentminute) == int(currentminute):
-      wake, currentday = getcalendardata()
-      print(wake)
-      morningh = int(wake[0])- int(m[0])
-      morningm = int(wake[1])- int(m[1])
-      if morningm < 0:
-          morningh -= 1
-          morningm = 60 - int(m[1])
-      if morningh < 0:
-        morningh = 24 + morningh
-      nighth = morningh - int(n[0])
-      nightm = morningm - int(n[1])
-      if nightm < 0:
-          nighth -= 1
-          nightm = 60 - int(n[1])
-      if nighth < 0:
-        nighth = 24 + nighth
-      if int(currenthour) == nighth: #Night Alarm
-        if int(currentminute) == nightm:
-          if int(currentsecond) == 0:
+      if int(currentsecond) == 0:
+        print('refresh')
+    #if int(currenthour) == int(currenthour): 
+      #if int(currentminute) == int(currentminute):
+        wake, currentday = getcalendardata()
+        print(wake)
+        morningh = int(wake[0])- int(m[0])
+        morningm = int(wake[1])- int(m[1])
+        if morningm < 0:
+            morningh -= 1
+            morningm = 60 - int(m[1])
+        if morningh < 0:
+          morningh = 24 + morningh
+        nighth = morningh - int(n[0])
+        nightm = morningm - int(n[1])
+        if nightm < 0:
+            nighth -= 1
+            nightm = 60 - int(n[1])
+        if nighth < 0:
+          nighth = 24 + nighth
+        print(morningh)
+        print(morningm)
+        print(nighth)
+        print(nightm)
+  if int(currenthour) == nighth: #Night Alarm
+    if int(currentminute) == nightm:
+      if int(currentsecond) == 0:
+        clear()
+        write(5, 0, '%s:%s' % (currenthour,currentminute))
+        write(2, 1, 'Time To Sleep')
+        buzzsetup()
+        for i in range(1, len(song)):
+          buzzloop(GPIO.input(buttonPin),song[i],beat[i])
+        clear()
+        write(2, 1, 'Alarm Off')
+  if int(currenthour) == morningh: #Day Alarm
+    if int(currentminute) == morningm:
+      if int(currentsecond) == 0:
+        snooze = int(data['snooze'])
+        for s in range(snooze+1):
+          clear()
+          write(5, 0, '%s:%s' % (currenthour,currentminute))
+          write(2, 1, 'Wake Up')
+          buzzsetup()
+          for i in range(1, len(song)):
+            buzzloop(GPIO.input(buttonPin),song[i],beat[i])
+          if s < snooze:
             clear()
-            write(5, 0, '%s:%s' % (currenthour,currentminute))
-            write(2, 1, 'Time To Sleep')
-            buzzsetup()
-            for i in range(1, len(song)):
-              buzzloop(GPIO.input(buttonPin),song[i],beat[i])
-            clear()
-            write(2, 1, 'Alarm Off')
-      if int(currenthour) == morningh: #Day Alarm
-        if int(currentminute) == morningm:
-          if int(currentsecond) == 0:
-            snooze = int(data['snooze'])
-            for s in range(snooze+1):
-              clear()
+            write(2, 1, 'Alarm Snooze')
+            for g in range(5):
+              time.sleep(1)
+              now = timezone.localize(datetime.now())
+              currenthour = now.strftime("%H")
+              currentminute = now.strftime("%M")
               write(5, 0, '%s:%s' % (currenthour,currentminute))
-              write(2, 1, 'Wake Up')
-              buzzsetup()
-              for i in range(1, len(song)):
-                buzzloop(GPIO.input(buttonPin),song[i],beat[i])
-              if s < snooze:
-                clear()
-                write(2, 1, 'Alarm Snooze')
-                for g in range(5):
-                  time.sleep(1)
-                  now = timezone.localize(datetime.now())
-                  currenthour = now.strftime("%H")
-                  currentminute = now.strftime("%M")
-                  write(5, 0, '%s:%s' % (currenthour,currentminute))
-            clear()
-            write(2, 1, 'Alarm Off')
+        clear()
+        write(2, 1, 'Alarm Off')
