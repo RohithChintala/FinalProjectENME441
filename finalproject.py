@@ -11,7 +11,6 @@ nmin = data.getvalue('nmin')
 rmin = data.getvalue('rmin')  
 test = data.getvalue('test')
 snooze = data.getvalue('snooze')
-###import calendar data potentially to display dates
 web = {"sounds":sounds, "mhours":mhours, "nhours":nhours, "rhours":rhours, "mmin":mmin, "nmin":nmin, "rmin":rmin, "test":test, "snooze":snooze}
 with open('final.txt', 'w') as f:
   json.dump(web,f) 
@@ -28,7 +27,6 @@ print('<label for="sounds">Choose Sound: </label><select id="sounds" name="sound
 print('<option value="sound1">Sound 1</option>')
 print('<option value="sound2">Sound 2</option>')
 print('<option value="sound3">Sound 3</option>')
-print('<option value="sound4">Sound 4</option>')
 print('</select>')
 print('<input type="radio" name="test" value="testing" > Test Sound')
 print('<input type="radio" name="test" value="change"> Change Sound <br>')
