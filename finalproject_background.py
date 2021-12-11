@@ -7,7 +7,7 @@ import time
 from calendardata import getcalendardata
 from LCD1602 import init, write, clear
 from custompassiveBuzzer import buzzsetup, buzzloop, buzzdestroy
-from custompassiveBuzzer import CL,CM,CH,song_1,song_2
+from custompassiveBuzzer import CL,CM,CH,song_1,song_2,song_3,song_test,beat_1,beat_2,beat_3,beat_test
 '''
 CL = [0, 131, 147, 165, 175, 196, 211, 248]		# Frequency of Low C notes
 
@@ -30,7 +30,6 @@ song3 = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6],
 			CM[5], CM[2], CM[3], CM[3], CL[6], CL[6], CL[6], CM[1],
 			CM[2], CM[3], CM[2], CL[7], CL[6], CM[1], CL[5]	]
 '''
-song_test = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3], CM[5], CM[2]]
 
   #####
   ####ADD Different Songs
