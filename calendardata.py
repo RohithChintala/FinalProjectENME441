@@ -73,9 +73,9 @@ def getcalendardata():
             if int(hour[i]) < wakeuptime:
               wakeuptime = int(hour[i])
             if int(hour[i]) == wakeuptime:
-              if int(minute[i]) < wakeminute:
+              if int(minute[i]) <= wakeminute:
                 wakeminute = int(minute[i])
               wakeuptime = int(hour[i])
-              wake = [wakeuptime, wakeminute]
+            wake = [wakeuptime, wakeminute]
           i += 1
     return wake, currentday
