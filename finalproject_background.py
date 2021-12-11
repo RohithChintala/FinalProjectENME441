@@ -68,17 +68,20 @@ while True: #runs continuously
   currentsecond = now.strftime("%S")
   if sound == 'sound1':
     song = song_1
+    beat = beat_1
   elif sound == 'sound2':
     song = song_2
-  #elif sound == 'song3':
-  #  song = song_3
+    beat = beat_2
+  elif sound == 'song3':
+    song = song_3
+    beat = beat_3
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute))
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   if data['test'] == 'testing':
     buzzsetup()
     for i in range(1, len(song)):
-      buzzloop(GPIO.input(buttonPin),song[i])
+      buzzloop(GPIO.input(buttonPin),song[i],beat[i])
     buzzdestroy()
   if int(currenthour) == r[0]:
     if int(currentminute) == r[2]:

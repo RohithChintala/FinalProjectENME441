@@ -98,7 +98,7 @@ song_3 = ["E4","E4","E4",
 
 beat_3=[0]*len(song_3)
 for i in range(186):
-  beat_3[i]=random.randint(1,5)
+  beat_3[i]=random.randint(1,2)
 
 song_test = [	CM[3], CM[5], CM[6], CM[3], CM[2], CM[3], CM[5], CM[6], CH[1], CM[6], CM[5], CM[1], CM[3], CM[2], CM[2], CM[3], CM[5], CM[2]]
 
@@ -123,7 +123,7 @@ def buzzloop(pin,song,beat):
   if pin == 0:
     Buzz.ChangeFrequency(song)	# Change the frequency along the song note
     #time.sleep(.5)
-    time.sleep(beat*0.5)
+    time.sleep(beat*0.25)
   if pin == 1:
     buzzdestroy()
 
