@@ -129,6 +129,7 @@ while True: #runs continuously
           g += 1
           if g == len(song):
             g = 0
+        buzzdestroy()   
         clear()
         write(2, 1, 'Alarm Off')
         time.sleep(1)
@@ -149,7 +150,7 @@ while True: #runs continuously
             g+=1
             if g == len(song):
               g = 0
-
+          buzzdestroy()
 
           if s < snooze:
             clear()
