@@ -72,7 +72,7 @@ while True: #runs continuously
   elif sound == 'sound2':
     song = song_2
     beat = beat_2
-  elif sound == 'song3':
+  elif sound == 'sound3':
     song = song_3
     beat = beat_3
   clear()
