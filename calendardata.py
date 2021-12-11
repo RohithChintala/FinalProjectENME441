@@ -67,7 +67,7 @@ def getcalendardata():
         if int(day[i]) == 1:
           day[i] +=1 #keeps code running on the first of the month
         if int(month[i]) == int(currentmonth):
-          if int(day[i]) == int(currentday)+1:
+          if int(day[i]) == int(currentday): #removed + 1 for testing purposes
             if int(hour[i]) < wakeuptime:
               wakeuptime = int(hour[i])
             if int(hour[i]) == wakeuptime:

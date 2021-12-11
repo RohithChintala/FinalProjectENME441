@@ -94,14 +94,14 @@ while True: #runs continuously
       morningm = int(wake[1])- int(m[1])
       if morningm < 0:
           morningh -= 1
-          morningm = 60 - m[1]
+          morningm = 60 - int(m[1])
       if morningh < 0:
         morningh = 24 + morningh
       nighth = morningh - int(n[0])
       nightm = morningm - int(n[1])
       if nightm < 0:
           nighth -= 1
-          nightm = 60 - n[1]
+          nightm = 60 - int(n[1])
       if nighth < 0:
         nighth = 24 + nighth
       if int(currenthour) == nighth: #Night Alarm
