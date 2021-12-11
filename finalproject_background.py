@@ -147,4 +147,4 @@ while True: #runs continuously
               write(5, 0, '%s:%s' % (currenthour,currentminute))
         clear()
         write(2, 1, 'Alarm Off')
-    time.sleep(.1)
+    time.sleep(.5)
