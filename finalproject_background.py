@@ -86,7 +86,7 @@ while True: #runs continuously
   write(0, 1, "%s, %s, %s,'%s" % (currentdayname,currentday,currentmonth, currentyear))
   if data['test'] == 'testing':
     buzzsetup()
-    for i in range(1, len(song)):
+    for i in range(1, (len(song)/2)):
       buzzloop(GPIO.input(buttonPin),song[i],beat[i])
     buzzdestroy()
   if int(currenthour) == int(r[0]):
