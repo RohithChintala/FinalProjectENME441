@@ -112,7 +112,7 @@ while True: #runs continuously
             write(2, 1, 'Time To Sleep')
             buzzsetup()
             for i in range(1, len(song)):
-              buzzloop(GPIO.input(buttonPin),song[i])
+              buzzloop(GPIO.input(buttonPin),song[i],beat[i])
             clear()
             write(2, 1, 'Alarm Off')
       if int(currenthour) == morningh: #Day Alarm
@@ -125,7 +125,7 @@ while True: #runs continuously
               write(2, 1, 'Wake Up')
               buzzsetup()
               for i in range(1, len(song)):
-                buzzloop(GPIO.input(buttonPin),song[i])
+                buzzloop(GPIO.input(buttonPin),song[i],beat[i])
               if s < snooze:
                 clear()
                 write(2, 1, 'Alarm Snooze')
