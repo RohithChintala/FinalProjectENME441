@@ -127,7 +127,7 @@ while True: #runs continuously
         #for i in range(1, len(song)):
           buzzloop(GPIO.input(buttonPin),song[g],beat[g])
           g += 1
-          if g > len(song):
+          if g == len(song):
             g = 0
         clear()
         write(2, 1, 'Alarm Off')
@@ -147,7 +147,7 @@ while True: #runs continuously
           #for i in range(1, len(song)):
             buzzloop(GPIO.input(buttonPin),song[g],beat[g])
             g+=1
-            if g > len(song):
+            if g == len(song):
               g = 0
 
 
