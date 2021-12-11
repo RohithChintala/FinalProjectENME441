@@ -79,6 +79,7 @@ while True: #runs continuously
   elif sound == 'sound3':
     song = song_3
     beat = beat_3
+
   clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute))
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
@@ -90,11 +91,11 @@ while True: #runs continuously
   if int(currenthour) == int(r[0]):
     if int(currentminute) == int(r[1]):
       if int(currentsecond) == 0:
-        print('refresh')
+        #print('refresh')
     #if int(currenthour) == int(currenthour): 
       #if int(currentminute) == int(currentminute):
         wake, currentday = getcalendardata()
-        print(wake)
+        #print(wake)
         morningh = int(wake[0])- int(m[0])
         morningm = int(wake[1])- int(m[1])
         if morningm < 0:
@@ -109,10 +110,10 @@ while True: #runs continuously
             nightm = 60 - int(n[1])
         if nighth < 0:
           nighth = 24 + nighth
-        print(morningh)
-        print(morningm)
-        print(nighth)
-        print(nightm)
+        #print(morningh)
+        #print(morningm)
+        #print(nighth)
+        #print(nightm)
   if int(currenthour) == nighth: #Night Alarm
     if int(currentminute) == nightm:
       if int(currentsecond) == 0:
@@ -146,3 +147,4 @@ while True: #runs continuously
               write(5, 0, '%s:%s' % (currenthour,currentminute))
         clear()
         write(2, 1, 'Alarm Off')
+    time.sleep(.1)
