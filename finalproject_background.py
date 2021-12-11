@@ -67,9 +67,9 @@ while True: #runs continuously
   currenthour = now.strftime("%H")
   currentminute = now.strftime("%M")
   currentsecond = now.strftime("%S")
-  if sound == 'song1':
+  if sound == 'sound1':
     song = song_1
-  elif sound == 'song2':
+  elif sound == 'sound2':
     song = song_2
   #elif sound == 'song3':
   #  song = song_3
