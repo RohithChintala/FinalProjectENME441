@@ -125,6 +125,8 @@ while True: #runs continuously
           buzzloop(GPIO.input(buttonPin),song[i],beat[i])
         clear()
         write(2, 1, 'Alarm Off')
+        time.sleep(1)
+        clear()
   if int(currenthour) == morningh: #Day Alarm
     if int(currentminute) == morningm:
       if int(currentsecond) == 0:
@@ -147,3 +149,5 @@ while True: #runs continuously
               write(5, 0, '%s:%s' % (currenthour,currentminute))
         clear()
         write(2, 1, 'Alarm Off')
+        time.sleep(1)
+        clear()
