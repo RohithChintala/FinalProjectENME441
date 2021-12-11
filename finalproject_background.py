@@ -122,8 +122,13 @@ while True: #runs continuously
         write(5, 0, '%s:%s' % (currenthour,currentminute))
         write(2, 1, 'Time To Sleep')
         buzzsetup()
-        for i in range(1, len(song)):
-          buzzloop(GPIO.input(buttonPin),song[i],beat[i])
+        g = 0
+        while GPIO.input(buttonPin) < 1:
+        #for i in range(1, len(song)):
+          buzzloop(GPIO.input(buttonPin),song[g],beat[g])
+          g += 1
+          if g > len(song):
+            g = 0
         clear()
         write(2, 1, 'Alarm Off')
         time.sleep(1)
@@ -137,8 +142,15 @@ while True: #runs continuously
           write(5, 0, '%s:%s' % (currenthour,currentminute))
           write(2, 1, 'Wake Up')
           buzzsetup()
-          for i in range(1, len(song)):
-            buzzloop(GPIO.input(buttonPin),song[i],beat[i])
+          g = 0
+          while GPIO.input(buttonPin) < 1:
+          #for i in range(1, len(song)):
+            buzzloop(GPIO.input(buttonPin),song[g],beat[g])
+            g+=1
+            if g > len(song):
+              g = 0
+
+
           if s < snooze:
             clear()
             write(2, 1, 'Alarm Snooze')
