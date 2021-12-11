@@ -79,8 +79,8 @@ while True: #runs continuously
   elif sound == 'sound3':
     song = song_3
     beat = beat_3
-
-  clear()
+    
+  #clear()
   write(5, 0, '%s:%s' % (currenthour,currentminute))
   write(0, 1, '%s, %s, %s' % (currentdayname,currentday,currentmonth))
   if data['test'] == 'testing':
@@ -147,4 +147,3 @@ while True: #runs continuously
               write(5, 0, '%s:%s' % (currenthour,currentminute))
         clear()
         write(2, 1, 'Alarm Off')
-    time.sleep(.5)
