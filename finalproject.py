@@ -2,15 +2,15 @@
 import cgi
 import json
 data = cgi.FieldStorage()
-sounds = data.getvalue('sounds') 
-mhours = data.getvalue('mhours') 
-nhours = data.getvalue('nhours') 
-rhours = data.getvalue('rhours') 
-mmin = data.getvalue('mmin') 
-nmin = data.getvalue('nmin') 
-rmin = data.getvalue('rmin')  
-test = data.getvalue('test')
-snooze = data.getvalue('snooze')
+sounds = data.getvalue('sounds')  #gets chosen song value from dropdown
+mhours = data.getvalue('mhours') #gets chosen amount of hours to wake up before event
+nhours = data.getvalue('nhours') #gets chosen amount of hours of sleep
+rhours = data.getvalue('rhours') #gets chosen refresh hour
+mmin = data.getvalue('mmin') #gets chosen minute to wake up before event
+nmin = data.getvalue('nmin') #gets chosen amount of minutes of sleep
+rmin = data.getvalue('rmin')  #gets choosen refresh minute
+test = data.getvalue('test') #gets test value to see if user wants to test sound for volume
+snooze = data.getvalue('snooze') #gets snooze value for amount of snoozes user wants
 web = {"sounds":sounds, "mhours":mhours, "nhours":nhours, "rhours":rhours, "mmin":mmin, "nmin":nmin, "rmin":rmin, "test":test, "snooze":snooze}
 with open('final.txt', 'w') as f:
   json.dump(web,f) 
@@ -77,7 +77,7 @@ print('<option value="45">45</option>')
 print('<option value="50">50</option>')
 print('<option value="55">55</option>')
 print('</select>')
-print('<br /><br />When to set the bedtime alarm:<select name="nhours">')
+print('<br /><br />How long before morning alarm to set night alarm:<select name="nhours">')
 print('<option value="0">0</option>')
 print('<option value="1">1</option>')
 print('<option value="1">1</option>')
@@ -163,10 +163,10 @@ print('Current Wake UP Alarm is: %s:%s ' % (mhours,mmin))
 print('Before Event')
 print('<br />')
 print('Current Sleep Alarm is: %s:%s ' % (nhours,nmin))
-print('Before Event')
+print('Before Morning Alarm')
 print('<br />')
 print('Current Refresh Time is: %s:%s ' % (rhours,rmin))
-print('Before Event')
+print('the day before an event')
 print('<br />')
 print('</div>')
 print('</div>')
