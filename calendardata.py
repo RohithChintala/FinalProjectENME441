@@ -66,7 +66,7 @@ def getcalendardata(): #gets data from google calendar
           day[i] = int(currentday+1)
           month[i] = int(currentmonth)
         if int(month[i]) == int(currentmonth): #runs if the month of the event is equal to the current month
-          if int(day[i]) == int(currentday): #removed + 1 for testing purposes, runs if the day of the event is equal to the current day + 1
+          if int(day[i]) == int(currentday+1): #removed + 1 for testing purposes, runs if the day of the event is equal to the current day + 1
             if int(hour[i]) < wakeuptime: #checks if the hour of a given even it less than the current set wakeuptime
               wakeuptime = int(hour[i]) #if hour is less then sets wakeuptime to be equal to that hour
             if int(hour[i]) == wakeuptime: #if the hour is equal to the current wakeuptime 
