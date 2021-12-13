@@ -4,11 +4,13 @@ import urllib.parse
 import json
 import pytz
 
-#########ONLINE TUTORIAL CODE
+#########ONLINE TUTORIAL CODE retrieved from https://medium.com/geekculture/tutorial-creating-an-indicator-light-that-turns-on-when-youre-in-a-meeting-bdc98bc4dc77
+#used for retrieving data from google calendar and parsing through the json
+#all other alarm code functionality 
 GCALENDAR_URL_TEMPLATE = "https://clients6.google.com/calendar/v3/calendars/ii4b21lg3kh8rqbporo8bkb6ms@group.calendar.google.com/events?calendarId=ii4b21lg3kh8rqbporo8bkb6ms%40group.calendar.google.com&singleEvents=true&timeZone=America%2FNew_York&maxAttendees=1&maxResults=250&sanitizeHtml=true&timeMin=2021-11-28T00%3A00%3A00-05%3A00&timeMax=2022-01-02T00%3A00%3A00-05%3A00&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
 LOCAL_TIMEZONE = "America/New_York"  # Replace this with your time zone.
 
-def getcalendardata():
+def getcalendardata(): #gets data from google calendar
     # Headers for the HTTP GET request.
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36",
@@ -60,9 +62,9 @@ def getcalendardata():
         day[i] = event_start.strftime("%d") #fills day array with days of events
         hour[i] = event_start.strftime("%H") #fills hour array with hours of events
         minute[i] = event_start.strftime("%M") #fils minute array with minutes of events
-        if int(day[i]) == 1: #if the day is the first of the month increases that one day by 1 and subtracts that month by 1 to get through the following if statements
-          day[i] +=1 #keeps code running on the first of the month
-          month[i] -= 1 
+        if int(day[i]) == 1: #if the day is the first of the sets the day[i] to be current day +1 and month to be current month to ensure that code continues running
+          day[i] = int(currentday+1)
+          month[i] = int(currentmonth)
         if int(month[i]) == int(currentmonth): #runs if the month of the event is equal to the current month
           if int(day[i]) == int(currentday): #removed + 1 for testing purposes, runs if the day of the event is equal to the current day + 1
             if int(hour[i]) < wakeuptime: #checks if the hour of a given even it less than the current set wakeuptime
