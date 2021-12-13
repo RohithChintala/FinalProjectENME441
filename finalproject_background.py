@@ -49,7 +49,7 @@ while True: #runs continuously
   write(0, 1, "%s, %s, %s,'%s" % (currentdayname,currentday,currentmonth, currentyear)) #displays currentdays name, current day, current month, current year
   if data['test'] == 'testing': #checks if the radio button for volume testing is checked
     buzzsetup() #initializes buzzer
-    for i in range(1, int((len(song)/2)): #runs for half the length of a given zong
+    for i in range(1, int((len(song)/2))): #runs for half the length of a given zong
       buzzloop(GPIO.input(buttonPin),song[i],beat[i]) #passes buzzloop the current pin value, song value and beat value for an i
     buzzdestroy() #stops the buzzer when the song is done
   if int(currenthour) == int(r[0]): #checks if the current hour is the refresh hour
