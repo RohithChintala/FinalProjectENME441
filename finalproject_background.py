@@ -49,8 +49,9 @@ while True: #runs continuously
   write(0, 1, "%s, %s, %s,'%s" % (currentdayname,currentday,currentmonth, currentyear)) #displays currentdays name, current day, current month, current year
   if data['test'] == 'testing': #checks if the radio button for volume testing is checked
     buzzsetup() #initializes buzzer
-    for i in range(1, int((len(song)/2))): #runs for half the length of a given zong
+    for i in range(1, int((len(song)/2))): #runs for half the length of a given song
       buzzloop(GPIO.input(buttonPin),song[i],beat[i]) #passes buzzloop the current pin value, song value and beat value for an i
+    
     buzzdestroy() #stops the buzzer when the song is done
   if int(currenthour) == int(r[0]): #checks if the current hour is the refresh hour
     if int(currentminute) == int(r[1]): #checks if the current minute is the refresh minute
@@ -62,7 +63,7 @@ while True: #runs continuously
             morningh -= 1 #decreases the morning hours by 1
             morningm = 60 - int(m[1]) #sets minutes to be decreased from 60 to get correct time
         if morningh < 0: #if morninh is less than 0
-          morningh = 24 + morningh #decrease morningh from 24 hours
+          morningh = 24 + morningh #decrease morningh from 24 hours 
         nighth = morningh - int(n[0]) #sets nighth to be the desired sleeping hours subtracted from the morningh
         nightm = morningm - int(n[1]) #sets night, to be the desired sleeping minutes subtracted from the morning,
         if nightm < 0: #if nightm is less than 0

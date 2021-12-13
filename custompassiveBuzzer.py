@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#CODE ALLtered from RexQualis default for additional song and to work with snooze button
+#CODE Altered from RexQualis default for additional song and to work with snooze button
 import RPi.GPIO as GPIO
 import time
 import random
